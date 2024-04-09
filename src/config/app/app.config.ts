@@ -5,7 +5,7 @@ import { IsEnum, IsInt, IsOptional, IsString, IsUrl, Max, Min } from 'class-vali
 import validateConfiguration from '../config.validate';
 
 enum Environment {
-    DEVELOPEMENT = 'development',
+    DEVELOPMENT = 'development',
     PRODUCTION = 'production',
 }
 
@@ -31,7 +31,7 @@ class EnvironmentValidator {
 export default registerAs<AppConfig>('app', () => {
     validateConfiguration<EnvironmentValidator>(process.env, EnvironmentValidator);
     return {
-        apiPrefix: process.env.API_PREFIX || 'api/v1',
+        apiPrefix: process.env.API_PREFIX || 'api',
         env: process.env.NODE_ENV || 'development',
         host: process.env.HOST || 'http://localhost',
         port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3333,

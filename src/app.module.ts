@@ -10,7 +10,7 @@ import * as process from 'process';
         ConfigModule.forRoot({
             cache: true,
             isGlobal: true,
-            envFilePath: `${process.cwd()}/src/config/env/.${process.env.NODE_ENV}.env`,
+            envFilePath: `${process.cwd()}/src/config/env/.env.${process.env.NODE_ENV}`,
             load: [appConfig],
         }),
     ],

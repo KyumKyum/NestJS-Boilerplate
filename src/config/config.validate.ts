@@ -1,5 +1,6 @@
 import { plainToClass } from 'class-transformer';
 import { validateSync } from 'class-validator';
+import EnvNotValidException from '../exception/EnvNotValidException';
 
 const validateConfiguration = <T extends object>(
     configuration: Record<string, unknown>,
@@ -14,7 +15,7 @@ const validateConfiguration = <T extends object>(
     });
 
     if (validationErrors.length > 0) {
-        //* TODO: Define Error
+        throw new EnvNotValidException();
     }
 
     return validatedConfiguration;
