@@ -1,6 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import * as process from 'process';
-import { AppConfig } from './appConfig.type';
+import { AppConfig } from './app.config.type';
 import { IsEnum, IsInt, IsOptional, IsString, IsUrl, Max, Min } from 'class-validator';
 import validateConfiguration from '../config.validate';
 
@@ -9,7 +9,7 @@ enum Environment {
     PRODUCTION = 'production',
 }
 
-class EnvironmentValidator {
+class AppEnvironmentValidator {
     @IsString()
     @IsOptional()
     API_PREFIX?: string;
@@ -29,7 +29,7 @@ class EnvironmentValidator {
 }
 
 export default registerAs<AppConfig>('app', () => {
-    validateConfiguration<EnvironmentValidator>(process.env, EnvironmentValidator);
+    validateConfiguration<AppEnvironmentValidator>(process.env, AppEnvironmentValidator);
     return {
         apiPrefix: process.env.API_PREFIX || 'api',
         env: process.env.NODE_ENV || 'development',
