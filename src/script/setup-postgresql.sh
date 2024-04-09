@@ -20,7 +20,7 @@ if docker container inspect $CONTAINER_NAME >/dev/null 2>&1; then
 fi
 
 # Create data directory for storing PostgreSQL data
-mkdir -p "$PROJECT_PATH/pgdata"
+mkdir -p "$PROJECT_PATH/../pgdata"
 
 # Ensure the volume exists
 if ! docker volume ls | grep -q postgres_data; then

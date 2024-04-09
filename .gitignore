@@ -2,8 +2,7 @@
 /src/config/env/*
 
 # Pgdata
-/src/pgdata
-
+pgdata
 # compiled output
 /dist
 /node_modules
