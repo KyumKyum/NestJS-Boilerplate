@@ -4,7 +4,7 @@ import { useContainer } from 'class-validator';
 import { ConfigType } from '@nestjs/config';
 import appConfig from './config/app/app.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
-import globalValidationOptions from './utils/validation.option';
+import globalValidationOptions from './utils/validator/validator.option';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
