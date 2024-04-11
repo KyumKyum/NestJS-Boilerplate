@@ -3,6 +3,8 @@ import KafkaService from '../../src/providers/kafka/service/kafka.service';
 
 //* KafkaJS Integration test
 
+const SECOND = 1000;
+
 describe('KafkaJS Integration Test: ', () => {
     const kafka = new KafkaService(['localhost:9093', 'localhost:9094']).kafkaCluster;
     const producer = kafka.producer({
@@ -16,27 +18,31 @@ describe('KafkaJS Integration Test: ', () => {
         await producer.connect();
         await consumer.connect();
         await consumer.subscribe({ topic: testTopic, fromBeginning: true });
-    });
+    }, 60 * SECOND);
 
     afterAll(async () => {
         await consumer.disconnect();
         await producer.disconnect();
-    });
+    }, 60 * SECOND);
 
-    it('produces and consumes messages', (done) => {
-        const testMessage = 'Hello Kafka';
+    it(
+        'produces and consumes messages',
+        (done) => {
+            const testMessage = 'Hello Kafka';
 
-        consumer.run({
-            eachMessage: async ({ topic, partition, message }) => {
-                //console.log({ topic, partition, message });
-                expect(message.value?.toString()).toBe(testMessage);
-                done();
-            },
-        });
+            consumer.run({
+                eachMessage: async ({ topic, partition, message }) => {
+                    console.log({ topic, partition, message });
+                    expect(message.value?.toString()).toBe(testMessage);
+                    done();
+                },
+            });
 
-        producer.send({
-            topic: testTopic,
-            messages: [{ value: testMessage }],
-        });
-    });
+            producer.send({
+                topic: testTopic,
+                messages: [{ value: testMessage }],
+            });
+        },
+        60 * SECOND,
+    );
 });

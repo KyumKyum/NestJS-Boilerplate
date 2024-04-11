@@ -7,6 +7,7 @@ networks:
 
 services:
   # NestJS Service need to have 2 networks: -default, -kafka-service
+  # TODO: Need to remove all env-related variables.
 
   db:
     image: postgres:9.6.15-alpine
