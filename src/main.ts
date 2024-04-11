@@ -5,6 +5,8 @@ import { ConfigType } from '@nestjs/config';
 import appConfig from './config/app/app.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import globalValidationOptions from './utils/validator/validator.option';
+import KafkaConsumerService from './providers/kafka/service/consumer.service';
+import { TRANSMIT_TRANSACTION } from './constants/topic.constant';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -19,6 +21,10 @@ async function bootstrap() {
     //* Notable tags: @Exclude(), @Expose()
 
     //* Exclude SWAGGER since it is not required for PoC
+
+    //* Kafka
+    const kafkaService = app.get(KafkaConsumerService);
+    await kafkaService.consume(TRANSMIT_TRANSACTION, {}); //* TODO: Need to add eachMessageLogic after the policy had been made
 
     console.log(`🚀 The service is running on port ${config.port}`);
     await app.listen(config.port);

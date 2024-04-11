@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import appConfig from './config/app/app.config';
+import appConfig from '../../config/app/app.config';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import process from 'process';
 import { InjectRedis } from '@nestjs-modules/ioredis';

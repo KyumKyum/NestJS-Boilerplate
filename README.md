@@ -26,6 +26,17 @@
 $ npm install
 ```
 
+#### Before Start
+###### 1. Dev - ProstgresQL, Redis
+```bash
+sh src/script/setup.sh
+```
+###### 2. Dev - PostgresQL, Redis, Kafka
+```bash
+docker compose up -d
+```
+> Don't forget to shut down all containers after developement! (docker compose down)
+
 #### Running the app
 
 ```bash
@@ -41,9 +52,6 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
