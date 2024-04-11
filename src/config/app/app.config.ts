@@ -23,9 +23,13 @@ class AppEnvironmentValidator {
     @Max(65535)
     PORT?: number;
 
-    @IsUrl({ require_tld: false, require_port: false })
+    @IsString()
     @IsOptional()
     HOST?: string;
+
+    @IsString()
+    @IsOptional()
+    PROTOCOL?: string;
 }
 
 export default registerAs<AppConfig>('app', () => {
@@ -33,7 +37,8 @@ export default registerAs<AppConfig>('app', () => {
     return {
         apiPrefix: validatedConfig.API_PREFIX || 'api',
         env: validatedConfig.NODE_ENV || 'development',
-        host: validatedConfig.HOST || 'http://localhost',
+        host: validatedConfig.HOST || 'localhost',
         port: validatedConfig.PORT || 3333,
+        protocol: validatedConfig.PROTOCOL || 'http',
     };
 });
