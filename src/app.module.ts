@@ -7,6 +7,7 @@ import * as process from 'process';
 import { PgdbModule } from './providers/db/postgres/pgdb.module';
 import { RedisCacheModule } from './providers/cache/redis/redis.module';
 import ConsumerService from './providers/kafka/service/consumer.service';
+import { ModelModule } from './model/model.module';
 
 const dbInfraModule = PgdbModule; //* This need to be modified if more than one database is required.
 
@@ -20,6 +21,7 @@ const dbInfraModule = PgdbModule; //* This need to be modified if more than one 
         }),
         dbInfraModule,
         RedisCacheModule,
+        ModelModule,
     ],
     controllers: [AppController],
     providers: [AppService, ConsumerService], //* TODO: Remove App Service Later

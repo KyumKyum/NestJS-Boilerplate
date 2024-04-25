@@ -14,7 +14,7 @@ import pgdbConfig from '../../../config/db/postgres/pgdb.config';
                 username: configService.get<string>('pgdb.username'),
                 password: configService.get<string>('pgdb.password'),
                 database: configService.get<string>('pgdb.database'),
-                entities: [process.cwd() + '/src/api/**/*.entity.{ts,js}'],
+                entities: [`${process.cwd()}/dist/model/**/*.entity.{ts,js}`],
                 synchronize: configService.get<string>('NODE_ENV') === 'development',
                 logging: configService.get<string>('NODE_ENV') === 'development',
             }),

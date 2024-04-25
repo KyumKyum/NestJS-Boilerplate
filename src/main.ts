@@ -15,16 +15,17 @@ async function bootstrap() {
     useContainer(app.select(AppModule), { fallbackOnErrors: true });
     app.enableShutdownHooks();
     app.setGlobalPrefix(config.apiPrefix, { exclude: ['/', 'redis-test'] }); //* Add endpoints to exclude the prefix.
-    //* Exclude api versioning since versioning is not required for PoC
+    //? Exclude api versioning since versioning is not required for PoC
+
     app.useGlobalPipes(new ValidationPipe(globalValidationOptions));
     app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector))); //* Interceptors for JSON serialization.
     //* Notable tags: @Exclude(), @Expose()
 
-    //* Exclude SWAGGER since it is not required for PoC
+    //? Exclude SWAGGER since it is not required for PoC
 
     //* Kafka
-    const kafkaService = app.get(KafkaConsumerService);
-    await kafkaService.consume(TRANSMIT_TRANSACTION, {}); //* TODO: Need to add eachMessageLogic after the policy had been made
+    //const kafkaService = app.get(KafkaConsumerService);
+    //await kafkaService.consume(TRANSMIT_TRANSACTION, {}); // TODO: Need to add eachMessageLogic after the policy had been made
 
     console.log(`🚀 The service is running on port ${config.port}`);
     await app.listen(config.port);

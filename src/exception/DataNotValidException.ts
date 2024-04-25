@@ -1,1 +1,1 @@
-export default class DataNotValidException extends Error {}
+export default class DataNotValidException extends Error {name="DataNotValidException"}
