@@ -1,0 +1,12 @@
+#!/bin/sj
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🐶Initiating Husky... Checking ESLint Rules..."
+
+npm run lint ||
+(
+    echo "❌ Rule violation detected! Check the ESlint rules, and try it again.";
+    false; # Nullfy the commit.ß
+)
+
+echo "🚀No problems found. Please wait..."
