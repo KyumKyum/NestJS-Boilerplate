@@ -1,7 +1,7 @@
 //* User Entity
 //* This will be modified later
 
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {Column, Entity, PrimaryGeneratedColumn, Unique} from 'typeorm';
 import BuildableEntity from '../../../../common/lib/buildableEntity';
 
 @Entity('User')
@@ -9,7 +9,7 @@ export class User extends BuildableEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column()
+    @Column({unique: true})
     ident: string;
 
     @Column()

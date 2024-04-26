@@ -1,11 +1,32 @@
 import BuildableDto from '../../../../common/lib/buildableDto';
-import {IsNotEmpty, IsString} from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class UserDto extends BuildableDto {
+    @IsNotEmpty()
+    @IsString()
     id: string;
+
+    @IsNotEmpty()
+    @IsString()
     ident: string;
+
+    @IsNotEmpty()
+    @IsString()
     password: string;
+
+    @IsNotEmpty()
+    @IsString()
     name: string;
+}
+
+export class LoginUserDto extends BuildableDto {
+    @IsNotEmpty()
+    @IsString()
+    ident: string;
+
+    @IsNotEmpty()
+    @IsString()
+    password: string;
 }
 export class CreateUserDto extends BuildableDto {
     @IsNotEmpty()
