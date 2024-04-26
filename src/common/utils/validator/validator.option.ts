@@ -1,13 +1,15 @@
+import * as _ from 'lodash';
 import { HttpStatus, UnprocessableEntityException, ValidationError, ValidationPipeOptions } from '@nestjs/common';
 
 const processErrors = (errors: ValidationError[]) => {
-    return errors.reduce((acc, cur) => ({
-        ...acc,
-        [cur.property]:
-            (cur.children?.length ?? 0) > 0
-                ? processErrors(cur.children ?? []) //* Error has children: Process in recursive way.
-                : Object.values(cur.constraints ?? {}).join(', '),
-    }));
+
+    return errors.reduce((acc, cur) => {
+        const errorDetails = !!cur.children && _.get(cur, 'children.length', 0) > 0
+            ? processErrors(cur.children)
+            : _.join(_.values(cur.constraints), ', ');
+
+        return _.merge({}, acc, {[cur.property]: errorDetails})
+    }, {})
 };
 
 const globalValidationOptions: ValidationPipeOptions = {

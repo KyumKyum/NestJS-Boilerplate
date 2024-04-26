@@ -4,46 +4,46 @@ import { IsNotEmpty, IsString } from 'class-validator';
 export class UserDto extends BuildableDto {
     @IsNotEmpty()
     @IsString()
-    id: string;
+    id: string = '';
 
     @IsNotEmpty()
     @IsString()
-    ident: string;
+    ident: string = '';
 
     @IsNotEmpty()
     @IsString()
-    password: string;
+    password: string = '';
 
     @IsNotEmpty()
     @IsString()
-    name: string;
+    name: string = '';
 }
 
 export class LoginUserDto extends BuildableDto {
     @IsNotEmpty()
     @IsString()
-    ident: string;
+    ident: string = '';
 
     @IsNotEmpty()
     @IsString()
-    password: string;
+    password: string = '';
 }
 export class CreateUserDto extends BuildableDto {
     @IsNotEmpty()
     @IsString()
-    ident: string;
+    ident: string = '';
 
     @IsNotEmpty()
     @IsString()
-    name: string;
+    name: string = '';
 
     @IsNotEmpty()
     @IsString()
-    password: string;
+    password: string = '';
 }
 
 export class UpdateUserDto extends BuildableDto {
-    ident?: string;
-    name?: string;
-    password?: string;
+    ident?: string = '';
+    name?: string = '';
+    password?: string = '';
 }

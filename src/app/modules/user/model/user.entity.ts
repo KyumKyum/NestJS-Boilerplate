@@ -1,7 +1,7 @@
 //* User Entity
 //* This will be modified later
 
-import {Column, Entity, PrimaryGeneratedColumn, Unique} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import BuildableEntity from '../../../../common/lib/buildableEntity';
 
 @Entity('User')
@@ -9,7 +9,7 @@ export class User extends BuildableEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({unique: true})
+    @Column({ unique: true })
     ident: string;
 
     @Column()
@@ -17,4 +17,7 @@ export class User extends BuildableEntity {
 
     @Column()
     name: string;
+
+    // Phone Number <- Required, unique
+    // Email <- Required, unique
 }

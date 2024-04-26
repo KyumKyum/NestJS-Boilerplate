@@ -7,7 +7,7 @@ import { Result } from '../../../common/utils/result/resultType';
 import { DataCreateFailedException } from '../../../common/exception/DataCreateFailedException';
 import { ResultStatus } from '../../../common/utils/result/resultStatus';
 import { DataFindFailedException } from '../../../common/exception/DataFindFailedException';
-import printException from "../../../common/utils/exception/printException";
+import printException from '../../../common/utils/exception/printException';
 
 @Injectable()
 class UserService {
@@ -41,14 +41,14 @@ class UserService {
     }
 
     async findByIdent(ident: string): Promise<Result<UserDto | null, DataFindFailedException>> {
-        try{
-            const user = await this.user.findOne({where:{ident}})
+        try {
+            const user = await this.user.findOne({ where: { ident } });
             if (user === null) return ResultStatus.ok(null);
             return ResultStatus.ok(UserDto.build(user).freeze());
-        }catch (e){
+        } catch (e) {
             return ResultStatus.err(
-                new DataFindFailedException(`Error occurred while finding user: ${printException(e)}`)
-            )
+                new DataFindFailedException(`Error occurred while finding user: ${printException(e)}`),
+            );
         }
     }
 }

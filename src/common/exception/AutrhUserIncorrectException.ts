@@ -1,1 +1,3 @@
-export class AuthUserIncorrectException extends Error{name = "AuthUserIncorrectException"}
+export class AuthUserIncorrectException extends Error {
+    name = 'AuthUserIncorrectException';
+}

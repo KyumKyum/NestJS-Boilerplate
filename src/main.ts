@@ -5,8 +5,8 @@ import { ConfigType } from '@nestjs/config';
 import appConfig from './config/app/app.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import globalValidationOptions from './common/utils/validator/validator.option';
-import KafkaConsumerService from './providers/kafka/service/consumer.service';
-import { TRANSMIT_TRANSACTION } from './common/constants/topic.constant';
+import * as cookieParser from "cookie-parser";
+//
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -26,6 +26,9 @@ async function bootstrap() {
     //* Kafka
     //const kafkaService = app.get(KafkaConsumerService);
     //await kafkaService.consume(TRANSMIT_TRANSACTION, {}); // TODO: Need to add eachMessageLogic after the policy had been made
+
+    //* Middlewares
+    app.use(cookieParser())
 
     console.log(`🚀 The service is running on port ${config.port}`);
     await app.listen(config.port);

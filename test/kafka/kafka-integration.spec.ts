@@ -1,5 +1,5 @@
 import { Kafka, Partitioners } from 'kafkajs';
-import KafkaService from '../../src/providers/kafka/service/kafka.service';
+import KafkaService from '../../src/infra/kafka/service/kafka.service';
 
 //* KafkaJS Integration test
 

@@ -1,18 +1,30 @@
-import {Body, Controller, Post, Request, UseGuards} from "@nestjs/common";
-import {LoginUserDto, UserDto} from "../user/model/user.dto";
-import {AuthGuard} from "@nestjs/passport";
+import {Controller, Get, Post, Req, Request, Res, UseGuards} from '@nestjs/common';
+import { LoginUserDto, UserDto } from '../user/model/user.dto';
+import { AuthGuard } from '@nestjs/passport';
+import {JWTSign} from "./jwt/jwtAuth.service";
+import {UserAuth} from "./auth.service";
+import {Response} from "express";
+import {JwtAuthGuard} from "../../../common/guard/jwtAuthGuard";
 
-interface AuthUserRequest extends Request {
-    user: UserDto
+interface RequestWithPassport extends Request {
+    user: UserAuth;
 }
 
-@Controller()
+@Controller('auth')
 export class AuthController {
     constructor() {}
 
     @UseGuards(AuthGuard('local'))
-    @Post('auth')
-    async authUser(@Request() req: AuthUserRequest): Promise<UserDto> {
-        return req.user;
+    @Post('user')
+    async authUser(@Request() req: RequestWithPassport, @Res() res: Response) {
+        const {user, jwt} = req.user
+        res.setHeader('Authorization', 'Bearer '+ jwt.accessToken);
+        res.json(user)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('jwt')
+    async isJwtAuthenticated(@Req() req: RequestWithPassport) {
+       return req.user;
     }
 }
