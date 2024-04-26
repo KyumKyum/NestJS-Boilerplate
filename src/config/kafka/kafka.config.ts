@@ -1,7 +1,7 @@
 import { registerAs } from '@nestjs/config';
 import { IsOptional, IsString } from 'class-validator';
 import { KafkaConfigType } from './kafka.config.type';
-import validateData from '../../utils/validator/validateData';
+import validateData from '../../common/utils/validator/validateData';
 import * as process from 'process';
 
 class KafkaConfigValidator {

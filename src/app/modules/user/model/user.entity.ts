@@ -2,7 +2,7 @@
 //* This will be modified later
 
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import BuildableEntity from '../lib/buildableEntity';
+import BuildableEntity from '../../../../common/lib/buildableEntity';
 
 @Entity('User')
 export class User extends BuildableEntity {

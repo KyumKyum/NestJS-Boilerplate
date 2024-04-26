@@ -1,12 +1,12 @@
 import { NestFactory, Reflector } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 import { useContainer } from 'class-validator';
 import { ConfigType } from '@nestjs/config';
 import appConfig from './config/app/app.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
-import globalValidationOptions from './utils/validator/validator.option';
+import globalValidationOptions from './common/utils/validator/validator.option';
 import KafkaConsumerService from './providers/kafka/service/consumer.service';
-import { TRANSMIT_TRANSACTION } from './constants/topic.constant';
+import { TRANSMIT_TRANSACTION } from './common/constants/topic.constant';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);

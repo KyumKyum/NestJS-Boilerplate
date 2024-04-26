@@ -1,7 +1,7 @@
 import { ConfigService, registerAs } from '@nestjs/config';
 import { RedisConfigType } from './redis.config.type';
 import { IsNumber, IsOptional, IsString, Max, Min, validateSync } from 'class-validator';
-import validateData from '../../../utils/validator/validateData';
+import validateData from '../../../common/utils/validator/validateData';
 import * as process from 'process';
 
 class RedisConfigValidator {

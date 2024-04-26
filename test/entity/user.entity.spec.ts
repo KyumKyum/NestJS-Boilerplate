@@ -1,4 +1,4 @@
-import {User} from "../../src/model/user/user.entity";
+import { User } from '../../src/app/modules/user/model/user.entity';
 
 describe('User Entity Test', () => {
     const ident = 'thisisid';

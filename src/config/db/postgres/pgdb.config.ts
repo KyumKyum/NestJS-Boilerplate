@@ -1,7 +1,7 @@
 import { ConfigService, registerAs } from '@nestjs/config';
 import { PgdbConfigType } from './pgdb.config.type';
 import { IsInt, IsOptional, IsString, Max, Min } from 'class-validator';
-import validateData from '../../../utils/validator/validateData';
+import validateData from '../../../common/utils/validator/validateData';
 import * as process from 'process';
 
 class PgdbEnvironmentValidator {
