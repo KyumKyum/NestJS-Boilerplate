@@ -1,5 +1,5 @@
 import BuildableDto from '../../../../common/lib/buildableDto';
-import { IsNotEmpty, IsString } from 'class-validator';
+import {IsEmail, IsNotEmpty, IsPhoneNumber, IsString} from 'class-validator';
 
 export class UserDto extends BuildableDto {
     @IsNotEmpty()
@@ -17,6 +17,18 @@ export class UserDto extends BuildableDto {
     @IsNotEmpty()
     @IsString()
     name: string = '';
+
+    @IsNotEmpty()
+    @IsString()
+    country: string = ''
+
+    @IsNotEmpty()
+    @IsString()
+    phoneNum: string = ''
+
+    @IsNotEmpty()
+    @IsEmail()
+    email: string = ''
 }
 
 export class LoginUserDto extends BuildableDto {
@@ -40,6 +52,19 @@ export class CreateUserDto extends BuildableDto {
     @IsNotEmpty()
     @IsString()
     password: string = '';
+
+    @IsNotEmpty()
+    @IsString()
+    country: string = ''
+
+    @IsNotEmpty()
+    @IsPhoneNumber()
+    phoneNum: string = ''
+
+
+    @IsNotEmpty()
+    @IsEmail()
+    email: string = ''
 }
 
 export class UpdateUserDto extends BuildableDto {

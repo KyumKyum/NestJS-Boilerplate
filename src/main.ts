@@ -9,6 +9,8 @@ import * as cookieParser from 'cookie-parser';
 import {HttpExceptionFilter} from "./common/filter/HttpExceptionFilter";
 import {DatabaseExceptionFilter} from "./common/filter/DatabaseExceptionFilter";
 import {LoggingInterceptor} from "./common/interceptor/LoggingInterceptor";
+import {SwaggerModule} from "@nestjs/swagger";
+import {swaggerConfig} from "./config/swagger/swaggerConfig";
 //
 
 async function bootstrap() {
@@ -24,7 +26,9 @@ async function bootstrap() {
     app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector))); //* Interceptors for JSON serialization.
     //* Notable tags: @Exclude(), @Expose()
 
-    //? Exclude SWAGGER since it is not required for PoC
+    //* Swagger
+    const doc = SwaggerModule.createDocument(app, swaggerConfig)
+    SwaggerModule.setup('swagger', app, doc);
 
     //* Interceptors
     app.useGlobalInterceptors(new LoggingInterceptor())

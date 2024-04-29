@@ -18,6 +18,12 @@ export class User extends BuildableEntity {
     @Column()
     name: string;
 
-    // Phone Number <- Required, unique
-    // Email <- Required, unique
+    @Column()
+    country: string;
+
+    @Column({unique: true})
+    phoneNum: string
+
+    @Column({unique: true})
+    email:string
 }
