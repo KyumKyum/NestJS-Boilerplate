@@ -8,6 +8,7 @@ import globalValidationOptions from './common/utils/validator/validator.option';
 import * as cookieParser from 'cookie-parser';
 import {HttpExceptionFilter} from "./common/filter/HttpExceptionFilter";
 import {DatabaseExceptionFilter} from "./common/filter/DatabaseExceptionFilter";
+import {LoggingInterceptor} from "./common/interceptor/LoggingInterceptor";
 //
 
 async function bootstrap() {
@@ -24,6 +25,9 @@ async function bootstrap() {
     //* Notable tags: @Exclude(), @Expose()
 
     //? Exclude SWAGGER since it is not required for PoC
+
+    //* Interceptors
+    app.useGlobalInterceptors(new LoggingInterceptor())
 
     //* Microservices
     //const kafkaService = app.get(KafkaConsumerService);
