@@ -6,6 +6,8 @@ import appConfig from './config/app/app.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import globalValidationOptions from './common/utils/validator/validator.option';
 import * as cookieParser from 'cookie-parser';
+import {HttpExceptionFilter} from "./common/filter/HttpExceptionFilter";
+import {DatabaseExceptionFilter} from "./common/filter/DatabaseExceptionFilter";
 //
 
 async function bootstrap() {
@@ -23,9 +25,12 @@ async function bootstrap() {
 
     //? Exclude SWAGGER since it is not required for PoC
 
-    //* Kafka
+    //* Microservices
     //const kafkaService = app.get(KafkaConsumerService);
     //await kafkaService.consume(TRANSMIT_TRANSACTION, {}); // TODO: Need to add eachMessageLogic after the policy had been made
+
+    //* Filters
+    app.useGlobalFilters(new HttpExceptionFilter(), new DatabaseExceptionFilter())
 
     //* Middlewares
     app.use(cookieParser());
