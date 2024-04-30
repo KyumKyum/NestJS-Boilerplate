@@ -6,12 +6,11 @@ import appConfig from './config/app/app.config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import globalValidationOptions from './common/utils/validator/validator.option';
 import * as cookieParser from 'cookie-parser';
-import {HttpExceptionFilter} from "./common/filter/HttpExceptionFilter";
-import {DatabaseExceptionFilter} from "./common/filter/DatabaseExceptionFilter";
-import {LoggingInterceptor} from "./common/interceptor/LoggingInterceptor";
-import {SwaggerModule} from "@nestjs/swagger";
-import {swaggerConfig} from "./config/swagger/swaggerConfig";
-//
+import { HttpExceptionFilter } from './common/filter/HttpExceptionFilter';
+import { DatabaseExceptionFilter } from './common/filter/DatabaseExceptionFilter';
+import { LoggingInterceptor } from './common/interceptor/LoggingInterceptor';
+import { SwaggerModule } from '@nestjs/swagger';
+import { swaggerConfig } from './config/swagger/swaggerConfig';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -27,18 +26,16 @@ async function bootstrap() {
     //* Notable tags: @Exclude(), @Expose()
 
     //* Swagger
-    const doc = SwaggerModule.createDocument(app, swaggerConfig)
+    const doc = SwaggerModule.createDocument(app, swaggerConfig);
     SwaggerModule.setup('swagger', app, doc);
 
     //* Interceptors
-    app.useGlobalInterceptors(new LoggingInterceptor())
+    app.useGlobalInterceptors(new LoggingInterceptor());
 
     //* Microservices
-    //const kafkaService = app.get(KafkaConsumerService);
-    //await kafkaService.consume(TRANSMIT_TRANSACTION, {}); // TODO: Need to add eachMessageLogic after the policy had been made
 
     //* Filters
-    app.useGlobalFilters(new HttpExceptionFilter(), new DatabaseExceptionFilter())
+    app.useGlobalFilters(new HttpExceptionFilter(), new DatabaseExceptionFilter());
 
     //* Middlewares
     app.use(cookieParser());

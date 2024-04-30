@@ -1,1 +1,3 @@
-export class UniqueKeyConstraintsViolation extends Error{name="UniqueKeyConstraintsViolation"}
+export class UniqueKeyConstraintsViolation extends Error {
+    name = 'UniqueKeyConstraintsViolation';
+}

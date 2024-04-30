@@ -65,13 +65,13 @@ done
 
 CONTAINER_ID="$(docker ps -aqf "name=$CONTAINER_NAME")"
 
-# Check if the 'zkvoting' database exists and create it if not
-DB_EXISTS=$(docker exec "$CONTAINER_ID" psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname = 'zkvoting'")
+# Check if the 'database' database exists and create it if not. The name should be changed
+DB_EXISTS=$(docker exec "$CONTAINER_ID" psql -U postgres -tAc "SELECT 1 FROM pg_database WHERE datname = 'database'")
 if [ "$DB_EXISTS" != "1" ]; then
-  docker exec "$CONTAINER_ID" psql -U postgres -c "CREATE DATABASE zkvoting WITH ENCODING='UTF8' LC_COLLATE='en_US.utf8' LC_CTYPE='en_US.utf8';"
-  echo "Database 'zkvoting' created."
+  docker exec "$CONTAINER_ID" psql -U postgres -c "CREATE DATABASE database WITH ENCODING='UTF8' LC_COLLATE='en_US.utf8' LC_CTYPE='en_US.utf8';"
+  echo "Database 'database' created."
 else
-  echo "Database 'zkvoting' already exists."
+  echo "Database 'database' already exists."
 fi
 
 echo "✨ Connection Successful! PostgreSQL is up and running! ✨"

@@ -36,6 +36,6 @@ export default registerAs<PgdbConfigType>('pgdb', () => {
         port: validatedPgdbConfig.DB_PORT || 6457,
         username: validatedPgdbConfig.DB_USERNAME || 'postgres',
         password: validatedPgdbConfig.DB_PASSWORD || 'postgres',
-        database: validatedPgdbConfig.DB_DATABASE || 'zkvoting',
+        database: validatedPgdbConfig.DB_DATABASE || 'database', //Default database name
     };
 });

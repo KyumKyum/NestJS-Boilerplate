@@ -19,7 +19,6 @@
 <img alt="Docker / Docker Compose" src ="https://img.shields.io/badge/Docker / Docker Compose-2496ED.svg?&style=for-the-badge&logo=Docker&logoColor=white"/>
 <img alt="Kubernetes" src ="https://img.shields.io/badge/Kubernetes-326CE5.svg?&style=for-the-badge&logo=Kubernetes&logoColor=white"/>
 <img alt="Terraform" src ="https://img.shields.io/badge/Terraform-844FBA.svg?&style=for-the-badge&logo=Terraform&logoColor=white"/>
-<img alt="Apache Kafka" src ="https://img.shields.io/badge/Apache Kafka-231F20.svg?&style=for-the-badge&logo=Apache Kafka&logoColor=white"/>
 </p>
 
 #### Installation

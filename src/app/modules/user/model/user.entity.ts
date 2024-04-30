@@ -21,9 +21,9 @@ export class User extends BuildableEntity {
     @Column()
     country: string;
 
-    @Column({unique: true})
-    phoneNum: string
+    @Column({ unique: true })
+    phoneNum: string;
 
-    @Column({unique: true})
-    email:string
+    @Column({ unique: true })
+    email: string;
 }
