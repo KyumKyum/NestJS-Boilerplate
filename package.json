@@ -18,13 +18,16 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "prepare": "husky",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d dist/config/db/postgres/pgdb.source.js",
-    "migration:show:dev": "NODE_ENV=development npm run typeorm migration:show",
-    "migration:create:dev": "NODE_ENV=development ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create ./dist/_migrations/pgdb",
-    "migration:generate:dev": "NODE_ENV=development npm run typeorm migration:generate ./dist/_migrations/pgdb",
-    "migration:run:dev": "NODE_ENV=development npm run typeorm migration:run",
-    "migration:revert:dev": "NODE_ENV=development npm run typeorm migration:revert",
-    "migration:show:prod": "NODE_ENV=production npm run typeorm migration:show"
+    "typeorm:dev": "cross-env NODE_ENV=development ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/config/db/postgres/pgdb.source.dev.ts",
+    "typeorm:prod": "cross-env NODE_ENV=production ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js -d src/config/db/postgres/pgdb.source.prod.ts",
+    "migration:create:dev": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create ./src/_migrations/pgdb/dev/Migrations",
+    "migration:generate:dev": "npm run typeorm:dev migration:generate ./src/_migrations/pgdb/dev/Migrations",
+    "migration:run:dev": "npm run typeorm:dev migration:run",
+    "migration:revert:dev": "npm run typeorm:dev migration:revert",
+    "migration:create:prod": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:create ./src/_migrations/pgdb/prod/Migrations",
+    "migration:generate:prod": "npm run typeorm:prod migration:generate ./src/_migrations/pgdb/prod/Migrations",
+    "migration:run:prod": "npm run typeorm:prod migration:run",
+    "migration:revert:prod": "npm run typeorm:prod migration:revert"
   },
   "dependencies": {
     "@nestjs-modules/ioredis": "^2.0.2",

@@ -1,6 +1,9 @@
 # Environment
 /src/config/env/*
 
+# Migrations
+/src/_migrations/*
+
 # Pgdata
 pgdata
 # compiled output

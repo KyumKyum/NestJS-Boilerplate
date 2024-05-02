@@ -20,7 +20,7 @@ COPY --chown=node:node . .
 RUN npm run build
 
 # Ensure all migrations are generated and run before starting the application
-RUN npm run migration:generate:prod && npm run migration:run:prod
+RUN npm run migration:run:prod
 
 # Temporararilly disable Husky and install only dependencies
 RUN npm ci --omit=dev --ignore-scripts
@@ -34,4 +34,4 @@ COPY --chown=node:node --from=build /usr/src/app/dist ./dist
 
 USER node
 
-CMD ["sh", "-c", "npm run migration:run && node dist/main.js"]
+CMD ["node dist/main.js"]
